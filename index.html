@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="favicon.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Foobar CTF – Countdown</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="stars" id="stars" aria-hidden="true"></div>
+
+  <main class="screen">
+    <!-- LOGO: put your logo file next to index.html and name it logo.png -->
+    <div class="logo" id="logo">
+      <img src="logos.png" alt="Foobar CTF logo">
+    </div>
+    <h1 class="title" data-text="FOOBAR">FOOBAR</h1>
+    <p class="subtitle">CTF</p>
+
+    <div class="countdown" id="countdown" role="timer" aria-live="off">
+      <div class="unit"><span class="num" id="days">00</span><span class="label">Days</span></div>
+      <div class="unit"><span class="num" id="hours">00</span><span class="label">Hours</span></div>
+      <div class="unit"><span class="num" id="minutes">00</span><span class="label">Minutes</span></div>
+      <div class="unit"><span class="num" id="seconds">00</span><span class="label">Seconds</span></div>
+    </div>
+
+    <p class="tagline" id="tagline">Find the flag. Beat the clock.</p>
+  </main>
+
+  <div class="scanlines" aria-hidden="true"></div>
+  <script src="script.js"></script>
+</body>
+</html>

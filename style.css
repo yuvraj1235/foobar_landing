@@ -1,0 +1,170 @@
+:root {
+  --bg: #0d0626;
+  --panel: #1a0c4a;
+  --violet: #a56bff;
+  --pink: #ff2a78;
+  --shadow: #3b1fa8;
+  --white: #ffffff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { min-height: 100%; }
+
+body {
+  background:
+    radial-gradient(ellipse at 50% 30%, #2a1070 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 100%, #3a0f5e 0%, transparent 55%),
+    var(--bg);
+  color: var(--white);
+  font-family: "Press Start 2P", monospace;
+  overflow-x: hidden;
+}
+
+/* ---------- Stars ---------- */
+.stars { position: fixed; inset: 0; pointer-events: none; }
+.star {
+  position: absolute;
+  width: 4px; height: 4px;
+  background: var(--pink);
+  box-shadow: 0 0 6px var(--pink);
+  animation: twinkle 3s steps(2) infinite;
+}
+.star.v { background: var(--violet); box-shadow: 0 0 6px var(--violet); }
+@keyframes twinkle { 50% { opacity: .15; } }
+
+/* ---------- Layout ---------- */
+.screen {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  gap: 18px;
+}
+
+/* ---------- Logo placeholder ---------- */
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.logo img {
+  display: block;
+  width: auto;
+  height: clamp(90px, 18vw, 160px); /* scales with screen, keeps aspect ratio */
+  max-width: 80vw;
+  object-fit: contain;
+  /* soft neon glow + hard pixel shadow to match the page */
+  filter: drop-shadow(4px 4px 0 var(--shadow)) drop-shadow(0 0 14px rgba(165, 107, 255, .55));
+}
+
+/* Uncomment if your logo is pixel art, to keep edges crisp when scaled:
+.logo img { image-rendering: pixelated; } */
+
+/* ---------- Title ---------- */
+.kicker {
+  font-size: clamp(14px, 3vw, 26px);
+  letter-spacing: 4px;
+  text-shadow: 3px 3px 0 var(--shadow);
+}
+
+.title {
+  position: relative;
+  font-size: clamp(44px, 14vw, 150px);
+  line-height: 1;
+  font-weight: 400;
+  background: linear-gradient(180deg, var(--violet) 0%, var(--violet) 40%, var(--pink) 75%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(5px 5px 0 var(--shadow));
+  animation: flicker 6s infinite;
+}
+
+.subtitle {
+  font-size: clamp(18px, 5vw, 44px);
+  color: var(--pink);
+  letter-spacing: 12px;
+  padding-left: 12px;
+  text-shadow: 4px 4px 0 var(--shadow);
+}
+
+@keyframes flicker {
+  0%, 92%, 96%, 100% { opacity: 1; }
+  94% { opacity: .75; }
+  98% { opacity: .85; }
+}
+
+/* ---------- Countdown ---------- */
+.countdown {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.unit {
+  min-width: 110px;
+  padding: 18px 12px 14px;
+  background: var(--panel);
+  border: 4px solid var(--violet);
+  box-shadow: 6px 6px 0 var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.num {
+  font-size: clamp(24px, 6vw, 48px);
+  color: var(--white);
+  text-shadow: 3px 3px 0 var(--pink);
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  font-family: "VT323", monospace;
+  font-size: 22px;
+  color: var(--violet);
+  letter-spacing: 2px;
+}
+
+.tagline {
+  margin-top: 24px;
+  font-size: clamp(10px, 2.2vw, 16px);
+  line-height: 1.8;
+  color: var(--pink);
+  text-shadow: 2px 2px 0 var(--shadow);
+}
+
+.tagline.live { animation: blink 1s steps(2) infinite; }
+@keyframes blink { 50% { opacity: .3; } }
+
+/* ---------- CRT scanlines ---------- */
+.scanlines {
+  position: fixed; inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, .25) 3px,
+    rgba(0, 0, 0, 0) 4px
+  );
+}
+
+@media (max-width: 520px) {
+  .unit { min-width: 130px; flex: 1 1 40%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .star, .title, .tagline.live { animation: none; }
+}
